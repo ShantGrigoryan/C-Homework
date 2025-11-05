@@ -32,7 +32,7 @@ int fibonacci_2(const int index) {
     fibonacci_arr[0] = 0;
     fibonacci_arr[1] = 1;
     for (int i = 2; i <= index; i++) {
-        fibonacci_arr[i] = fibonacci_arr[i - 1] + fibonacci_arr[i - 2];
+        fibonacci_arr[i] = fibonacci_arr[i - 2] + fibonacci_arr[i - 1];
     }
     return fibonacci_arr[index];
 }
