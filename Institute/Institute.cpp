@@ -4,8 +4,14 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <random>
+#include <ctime>
+
 using namespace std;
 
+
+
+// fibonacci and factorial function start
 int factorial(int x) {
     if (x == 0) {
         return 1; // if number is '0' return '1'
@@ -26,7 +32,6 @@ int fibonacсi(int x) {
 
     return index;
 }
-
 int fibonacci_2(const int index) {
     vector<int> fibonacci_arr(index+1); //create array to index size
     fibonacci_arr[0] = 0; // first fibonacci digit
@@ -36,18 +41,72 @@ int fibonacci_2(const int index) {
     }
     return fibonacci_arr[index];
 }
+void homework1();
+// fibonacci and factorial function end
+
+//homework 2 start
+class student {
+    private :char name[10];
+            char last_name[20];
+            int age;
+            double avg_point;
+    public:
+        void name_seter() {
+            cout << "Input student name ";
+            cin >> name; //set name in console
+        }
+        void last_name_seter() {
+            cout << "Input student lastname ";
+            cin >> last_name; // set lastname in console
+        }
+        void age_seter() {
+            cout << "Input student age ";
+            cin >> age; // set age in console
+        }
+        void avg_point_seter() {
+            avg_point = static_cast<double>(rand()) / RAND_MAX * 10.0; 
+            /*gpt(es chgitem esi im hamar ancanot er)
+                zut random tver a generacnum
+            */
+        }
+
+    //getters
+        char* name_getter() {
+            return name;
+        }
+        char* last_name_getter() {
+            return last_name;
+        }
+        int age_getter() {
+            return age;
+        }
+        double avg_point_getter() {
+            return avg_point;
+        }
+        
+};
+
+
+
+void homework2();
+void sort_student(student* students);
+
 int main()
 {
-    while(true){ 
-        cout << "Input the task >> "; 
+    homework2();
+}
+
+void homework1() {
+    while (true) {
+        cout << "Input the task >> ";
         string x; // empty variable 
         cin >> x; // input task name
         if (x == "fibonacci") { //if task name is fibonacci
             cout << "Input the digit(integer) >> "; //input 
             int digit; //empty variable for fibonacci function
             cin >> digit; // set inputed digit 
-            int result= fibonacсi(digit); //call method 1
-            int result2= fibonacci_2(digit); // call method 2
+            int result = fibonacсi(digit); //call method 1
+            int result2 = fibonacci_2(digit); // call method 2
             printf("Result > %d | %d", result, result2); // print results
             break; // while break
         }
@@ -65,8 +124,59 @@ int main()
     }
 }
 
+void homework2() {
+    student students[3];
+    for (int i = 0; i < 3; i++) {
+        cout << "Student " << i + 1;
+        cout << "\n";
+        students[i].name_seter();
+        students[i].last_name_seter();
+        students[i].age_seter();
+        students[i].avg_point_seter();
+    }
+   
+    for (student i : students) {
+        cout << i.name_getter() << " ";
+        cout << i.last_name_getter() << " ";
+        cout << i.age_getter() << " ";
+        cout << i.avg_point_getter() << "\n";
+    }
+    cout << "\n";
+    sort_student(students);
+
+}
+
+int sort_student(student* students) {
+    int max_index;
+    for (int pos = 0; pos < 3; pos++) {
+        bool swapped = false;
+        int max_age = students[pos].age_getter();
+        max_index = pos;
 
 
+        for (int i = pos + 1; i < 3; ++i) {
+            if (students[i].age_getter() > max_age) {
+                max_age = students[i].age_getter();
+                max_index = i;
+                swapped = true;
+            }
+        }
+
+
+        if (swapped) {
+            student temp = students[pos];
+            students[pos] = students[max_index];
+            students[max_index] = temp;
+        }
+    }
+    for (int i = 0; i < 3; i++) {
+        cout << students[i].name_getter() << " ";
+        cout << students[i].last_name_getter() << " ";
+        cout << students[i].age_getter() << " ";
+        cout << students[i].avg_point_getter() << "\n";
+    }
+    return max_index;
+}
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
 // Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
