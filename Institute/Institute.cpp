@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <vector>
 using namespace std;
 
 int factorial(int x) {
@@ -21,17 +22,47 @@ int fibonachi(int x) {
     double first = (1 + sqrt(5)) / 2;
     double second = (1 - sqrt(5)) / 2;
 
-    double index = (pow(first,x) - pow(second,x)) / sqrt(5);
+    int index = (pow(first,x) - pow(second,x)) / sqrt(5);
 
     return index;
 }
+
+int fibonacci_2(const int index) {
+    vector<int> fibonacci_arr(index+1);
+    fibonacci_arr[0] = 0;
+    fibonacci_arr[1] = 1;
+    for (int i = 2; i <= index; i++) {
+        fibonacci_arr[i] = fibonacci_arr[i - 1] + fibonacci_arr[i - 2];
+    }
+    return fibonacci_arr[index];
+}
 int main()
 {
-    cout << "Nermucel tiv >> ";
-    int x;
-    cin >> x;
-    x = fibonachi(x);
-    cout << x;
+    while(true){
+        cout << "Input the task >> ";
+        string x;
+        cin >> x;
+        if (x == "fibonacci") {
+            cout << "Input the digit(integer) >> ";
+            int digit;
+            cin >> digit;
+            int result= fibonachi(digit);
+            int result2= fibonacci_2(digit);
+            printf("Result > %d | %d", result, result2);
+            break;
+        }
+        else if (x == "factorial") {
+            cout << "Input the digit(integer) >> ";
+            int digit;
+            cin >> digit;
+            int result = factorial(digit);
+            printf("Result is > %d", result);
+            break;
+        }
+        else {
+            cout << "Task name incorrect , please try again \n";
+        }
+    }
 }
 
 
