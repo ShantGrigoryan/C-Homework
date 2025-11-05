@@ -7,14 +7,14 @@
 using namespace std;
 
 int factorial(int x) {
-    if (x == 0) {
+    if ( == 0) {
         return 1;
     }
     else if (x == 1) {
         return x;
     }
     else{
-        return x * factorial(x - 1);
+        return x * factorial(x - 1); //Recursion
     }
 }
 int fibonachi(int x) {
