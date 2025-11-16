@@ -93,7 +93,7 @@ void sort_student(student* students);
 
 int main()
 {
-    homework2();
+   
 }
 
 void homework1() {
@@ -125,8 +125,8 @@ void homework1() {
 }
 
 void homework2() {
-    student students[3];
-    for (int i = 0; i < 3; i++) {
+    student students[3]; //create students array
+    for (int i = 0; i < 3; i++) { //set students 1, 2 , 3 index values
         cout << "Student " << i + 1;
         cout << "\n";
         students[i].name_seter();
@@ -135,56 +135,47 @@ void homework2() {
         students[i].avg_point_seter();
     }
    
-    for (student i : students) {
+    for (student i : students) { //print array on foreach
         cout << i.name_getter() << " ";
         cout << i.last_name_getter() << " ";
         cout << i.age_getter() << " ";
         cout << i.avg_point_getter() << "\n";
     }
     cout << "\n";
-    sort_student(students);
+    sort_student(students); // call sort method inputed parameter - array
 
 }
+void sort_student(student* students) {
+    for (int pos = 0; pos <3 ; pos++) {
+        bool swapped = false; // flag
+        int max_age = students[pos].age_getter(); //student 0 index age
+        int max_index = pos;
 
-int sort_student(student* students) {
-    int max_index;
-    for (int pos = 0; pos < 3; pos++) {
-        bool swapped = false;
-        int max_age = students[pos].age_getter();
-        max_index = pos;
-
-
+    
         for (int i = pos + 1; i < 3; ++i) {
             if (students[i].age_getter() > max_age) {
                 max_age = students[i].age_getter();
                 max_index = i;
-                swapped = true;
+                swapped = true; // ete students arrayi i andamy pahpanac max_age ic mec a , save enq anum indeqy u droshy "barcacnum enq"
             }
         }
 
-
-        if (swapped) {
+    
+        if (swapped) {//ete droshy barcr a , poxum enq 
             student temp = students[pos];
             students[pos] = students[max_index];
             students[max_index] = temp;
         }
-    }
-    for (int i = 0; i < 3; i++) {
+        else {//ete che durs enq galis ciklic
+            break;
+        }
+        }
+    for (int i = 0; i < 3; i++) {//print
         cout << students[i].name_getter() << " ";
         cout << students[i].last_name_getter() << " ";
         cout << students[i].age_getter() << " ";
         cout << students[i].avg_point_getter() << "\n";
     }
-    return max_index;
+
+
 }
-
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
-
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
